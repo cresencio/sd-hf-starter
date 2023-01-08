@@ -352,3 +352,7 @@ body {
 .prompt-container p {
     text-align: left;
 }
+
+.text-yellow{
+    color: goldenrod;
+}

@@ -134,10 +134,19 @@ useEffect(() => {
             <h1>Build my avatar</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Build Cresencio a unique avatar using the options below.</h2>
+            <h2>Build Cresencio a unique avatar.</h2>
+            {img && (
+              <>
+                <p className='text-yellow'>Now you try! Play with the settings below and see what you get 😏</p>
+              </>
+            )}
           </div>
           <div className="prompt-container">
-            <Typeahead
+            
+
+          {img && (
+              <>
+                <Typeahead
             onChange={(selected) => {
               onStyleChange(selected)
             }}
@@ -183,6 +192,8 @@ useEffect(() => {
             id="finishing-touches"
             placeholder="Finishing touches"
           />
+              </>
+            )}
 
             <textarea rows={4} name="prompt" disabled className="prompt-box" value={input} onChange={onChange} placeholder={`Instructions: A ${style} type image of Cresencio in the style of ${artist} with ${finishingTouches} finishing touches.`}/>
             <div className="prompt-buttons">
