@@ -1,42 +1,23 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { Typeahead } from 'react-bootstrap-typeahead';
 import buildspaceLogo from '../assets/buildspace-logo.png';
 
 const Home = () => {
   const maxRetries = 20;
-  const [style, updateStyle] = useState('realistic');
-  const [artist, updateArtist] = useState('pablo picasso');
-  const [finishingTouches, updateFinishingTouches] = useState('highly-detailed');
-  const [input, setInput] = useState(`A ${style} type image of Cresencio in the style of ${artist} with ${finishingTouches} finishing touches.`);
+  const [input, setInput] = useState('');
   const [img, setImg] = useState(''); 
   const [retry, setRetry] = useState(0);
   const [retryCount, setRetryCount] = useState(maxRetries);
   const [isGenerating, setIsGenerating] = useState(false);
   const [finalPrompt, setFinalPrompt] = useState('');
-  const [promptLoaded, isPromptLoaded] = useState(false);
 
   const onChange = (event) => {
     setInput(event.target.value);
   };
 
-  const onArtistChange = (value) => {
-    updateArtist(value);
-    setInput(`A ${style} type image of Cresencio in the style of ${artist} with ${finishingTouches} finishing touches.`);
-  };
-
-  const onStyleChange = (value) => {
-    updateStyle(value);
-    setInput(`A ${style} type image of Cresencio in the style of ${artist} with ${finishingTouches} finishing touches.`);
-  };
-
-  const onFinishingTouchesChange = (value) => {
-    updateFinishingTouches(value);
-    setInput(`A ${style} type image of Cresencio in the style of ${artist} with ${finishingTouches} finishing touches.`);
-  };
-
   const generateAction = async () => {
+    console.log(input);
 
     // Add this check to make sure there is no double click
   if (isGenerating && retry === 0) return;
@@ -131,60 +112,13 @@ useEffect(() => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Build my avatar</h1>
+            <h1>AI-powered avatar generator</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Build Cresencio a unique avatar using the options below.</h2>
+            <h2>Turn me into anyone you want! Make sure you refer to me as "cresencio" in the prompt</h2>
           </div>
           <div className="prompt-container">
-            <Typeahead
-            onChange={(selected) => {
-              onStyleChange(selected)
-            }}
-            options={['realistic', 'oil painting', 'pencil drawing', 'concept art', 'watercolor']}
-            id="style"
-            placeholder="Style"
-          />
-          <Typeahead
-            onChange={(selected) => {
-              onArtistChange(selected)
-            }}
-            options={['Leonardo DaVinci', 'Vincent Van Gogh', 'Albrecht Dürer', 'Michelangelo', 'Salvador Dali']}
-            id="artist"
-            placeholder="Artist"
-          />
-          <Typeahead
-            onChange={(selected) => {
-              onFinishingTouchesChange(selected)
-            }}
-            options={['highly-detailed',
-            'surrealism',
-            'trending on artstation',
-            'triadic color scheme',
-            'smooth',
-            'sharp focus',
-            'matte',
-            'elegant',
-            'illustration',
-            'digital paint',
-            'dark',
-            'gloomy',
-            'octane render',
-            '8k',
-            '4k',
-            'washed-out colors',
-            'sharp',
-            'dramatic lighting',
-            'beautiful',
-            'post-processing',
-            'picture of the day',
-            'ambient lighting',
-            'epic composition']}
-            id="finishing-touches"
-            placeholder="Finishing touches"
-          />
-
-            <textarea rows={4} name="prompt" disabled className="prompt-box" value={input} onChange={onChange} placeholder={`Instructions: A ${style} type image of Cresencio in the style of ${artist} with ${finishingTouches} finishing touches.`}/>
+            <input className="prompt-box" value={input} onChange={onChange} />
             <div className="prompt-buttons">
             <a
               className={

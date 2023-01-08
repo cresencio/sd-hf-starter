@@ -76,7 +76,7 @@ body {
     width: min-content;
 }
 
-.prompt-box {
+.prompt-box, .rbt input{
     border-bottom-width: 1px;
     border-color: rgba(255, 255, 255, 0.1);
     border-left-width: 1px;
@@ -110,12 +110,12 @@ body {
     text-transform: none;
 }
 
-.prompt-box input {
+.prompt-box input, .rbt input{
     font-family: 'Manrope', sans-serif;
 }
 
 
-.prompt-box:focus {
+.prompt-box:focus, .rbt:focus{
     border-color: rgba(255, 255, 255, 0.75)
 }
 
@@ -299,7 +299,7 @@ body {
         width: 100%;
     }
 
-    .prompt-box {
+    .prompt-box , .rbt{
         width: 100%;
     }
 }
@@ -326,4 +326,29 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+#input-name{
+    white-space: pre-line;
+}
+
+.rbt-menu{
+    background-color: #ffffff;
+    display: flex!important;
+    flex-direction: column;
+    margin-top: -10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 20px;
+    line-height: 2rem;
+    width: 100%!important;
+    z-index: 10;
+}
+
+.rbt-menu a{
+    cursor: pointer;
+}
+
+.prompt-container p {
+    text-align: left;
 }
